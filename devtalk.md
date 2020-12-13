@@ -174,6 +174,8 @@ endfunction
 
 `*` jumps over all tha same words
 
+[time 8:00](https://www.youtube.com/watch?v=uBb9Z0hsNuY&t=480s)
+
 
 
 
