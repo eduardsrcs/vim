@@ -256,7 +256,64 @@ horizontal split
 
 [time 2:30](https://www.youtube.com/watch?v=hXAEUUsvMA0&t=150s)
 
+Tmux allows us to open multiple windows, in one we can run commands, in another we can work in vim. 
 
+`~/.tmux.conf`
+
+```.conf
+set -g default-terminal "screen-256color"
+set-option -g prefix C-q
+set -g mouse on
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+bind -r H resize-pane -L 10
+bind -r J resize-pane -D 10
+bind -r K resize-pane -U 10
+bind -r L resize-pane -R 10
+
+set history-limit 500
+
+bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
+bind-key -t vi-copy PPage page-up
+bind-key -t vi-copy NPage page-down
+
+bind -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "select-pane -t =; send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
+bind -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "select-pane -t =; send-keys -M" "select-pane -t =; send-keys -M"
+bind-key -t vi-copy WheelUpPane halfpage-up
+bind-key -t vi-copy WheelDownPane halfpage-down
+
+set -sg escape-time 0
+```
+
+this allows us to use `ctrl` `q` as command key and:
+
+`h` move to left window...
+
+and so on
+
+`H` ... move border between windows, and so on
+
+## Sessions
+
+rename session
+
+`ctrl` `b` + `$`
+
+return to `hello` session
+
+```
+tmux attach -t hello
+```
+
+Sessions allow multiple users work in one environment.
+
+# [Lesson 7. Neovim](https://www.youtube.com/watch?v=NmHuu3UjQ7k)
+
+[Home page](https://neovim.io)
 
 
 
