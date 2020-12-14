@@ -178,13 +178,25 @@ endfunction
 
 [time 8:00](https://www.youtube.com/watch?v=uBb9Z0hsNuY&t=480s)
 
+
+
 ## Remove highlight
 
 ```
 :noh
 ```
 
+## Navigation
 
+`. moves caret to thelast edit point
+
+to create mark to return to it press `m` `any lowercase key`, this creates local mark. To create global mark use UPPERCASE letter.
+
+`m` `p` creates mark called 'p', to move to it press **`** and **p**
+
+### Go to file , which link is under cursor
+
+`g` `f` 
 
 
 
