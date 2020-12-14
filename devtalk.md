@@ -167,13 +167,22 @@ endfunction
 
 `f` finds symbol in line. `f` `e` finds first "e" symbol in this line, `;` goes to the next that symbol
 
-`t` does same but places cursor before symbol
+`t` does same but places cursor before symbol 
+
+`F` searches symbol in backward direction
+`T` does the same as `t` in backward
 
 `/` searches whole phrase. **Note** that `.` must be escaped, because regexp...
 
 `*` jumps over all tha same words
 
 [time 8:00](https://www.youtube.com/watch?v=uBb9Z0hsNuY&t=480s)
+
+## Remove highlight
+
+```
+:noh
+```
 
 
 
