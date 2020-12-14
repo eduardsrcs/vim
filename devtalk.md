@@ -165,6 +165,10 @@ endfunction
 
 # [Vim 05 - Поиск и навигация](https://www.youtube.com/watch?v=uBb9Z0hsNuY)
 
+## Find something
+
+### In file
+
 `f` finds symbol in line. `f` `e` finds first "e" symbol in this line, `;` goes to the next that symbol
 
 `t` does same but places cursor before symbol 
@@ -178,7 +182,35 @@ endfunction
 
 [time 8:00](https://www.youtube.com/watch?v=uBb9Z0hsNuY&t=480s)
 
+### Search in files
 
+#### :vimgrep
+
+```
+:vimgrep def *
+```
+
+means find def in all files inside this directory. To move over results, use **:cnext** or **:cprev** command.
+
+#### :grep
+
+this is wrapper over system grep.  So, greo must be installed in system.
+
+```
+:grep def *
+```
+
+just outputs list of files where it found *def*
+
+### [ag.vim](https://github.com/rking/ag.vim)
+
+'rking/ag.vim'
+
+```
+:Ag def ./
+```
+
+search def inside  this directiry
 
 ## Remove highlight
 
@@ -188,15 +220,43 @@ endfunction
 
 ## Navigation
 
-`. moves caret to thelast edit point
+### Go to line
+
+`line number` `g` `g` 
+
+```
+12 gg
+```
+
+---
+
+`. moves caret to the last edit point
 
 to create mark to return to it press `m` `any lowercase key`, this creates local mark. To create global mark use UPPERCASE letter.
 
 `m` `p` creates mark called 'p', to move to it press **`** and **p**
 
-### Go to file , which link is under cursor
+### Go to file, which link is under cursor
 
 `g` `f` 
+
+## Delete part of line 
+
+`d` `t` `symbol`, such as `'` 
+
+# [Lesson 6. Vim + Termux](https://www.youtube.com/watch?v=hXAEUUsvMA0&t=1s)
+
+vertical split
+
+`ctrl` `b` `%`
+
+horizontal split
+
+`ctrl` `b` `"`
+
+[time 2:30](https://www.youtube.com/watch?v=hXAEUUsvMA0&t=150s)
+
+
 
 
 
