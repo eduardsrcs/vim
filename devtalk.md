@@ -45,19 +45,18 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 `.vimrc`
 
 ```
-  1 call plug#begin('~/.vim/plugged')
-  2                            
-  3 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-  4 
-  5 call plug#end()            
-  6 
-  7 set number                 
-  8 set expandtab              
-  9 set tabstop=2              
- 10 
- 11 "Mappings                  
- 12 
- 13 map <C-n> :NERDTreeToggle<CR>
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+call plug#end()
+set number
+set expandtab
+set tabstop=2
+
+"Mappings                  
+
+map <C-n> :NERDTreeToggle<CR>
 
 ```
 
