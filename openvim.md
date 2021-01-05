@@ -47,6 +47,12 @@ In insert mode press `esc` to go to normal mode. From normal mode press `i` to g
 
 `/`word will find first **word**, `n` goes to **next**, and `N` moves to **previous** occurency
 
+### Remove searched highlight
+
+[Vim clear last search highlighting](https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting)
+
+`:noh` 
+
 ### Replacing text
 
 `:` `s` /thee/the will replace first occurence, but
@@ -63,7 +69,7 @@ To change every occurrence of a character string between two lines,
 
 `%` jumps to matching bracket.
 
-### Insert text in a new line
+### Write text in a new line
 
 use `o` or `O` to start typing in a new line in **insert mode**
 
@@ -75,6 +81,43 @@ use `o` or `O` to start typing in a new line in **insert mode**
 
 `:` `r` ` ` `!` `ls` will place ls command result in text
 
+### Copy line
+
+`V` `y` `p`
+
+### Copy multiple lines
+
+`V` ``j/k` `y`
+
+#### insert
+
+ `p`
+
+### Move line
+
+You can move a line, or a block of lines, with the `:m` command. Examples:
+
+| `:m 12`   | move current line to after line 12                           |
+| --------- | ------------------------------------------------------------ |
+| `:m 0`    | move current line to before first line                       |
+| `:m $`    | move current line to after last line                         |
+| `:m 'a`   | move current line to after line with mark `a` (see [using marks](https://vim.fandom.com/wiki/Using_marks)) |
+| `:m 'a-1` | move current line to before line with mark `a`               |
+| `:m '}-1` | move current line to the end of the current paragraph        |
+
+For clarity, a space is shown after the `:m` commands above, but that space is not required.
+
+To move a block of lines, use the same command but visually select the lines before entering the move command. You can also use arbitrary [ranges](https://vim.fandom.com/wiki/Ranges) with the move command. Examples:
+
+| `:5,7m 21`   | move lines 5, 6 and 7 to after line 21                 |
+| ------------ | ------------------------------------------------------ |
+| `:5,7m 0`    | move lines 5, 6 and 7 to before first line             |
+| `:5,7m $`    | move lines 5, 6 and 7 to after last line               |
+| `:.,.+4m 21` | move 5 lines starting at current line to after line 21 |
+| `:,+4m14`    | same (`.` for current line is assumed)                 |
+
+[more examples](https://vim.fandom.com/wiki/Moving_lines_up_or_down)
+
 ### Delete text
 
 `x` deletes symbol under cursor, but `X` deletes on the left.
@@ -85,15 +128,21 @@ use `o` or `O` to start typing in a new line in **insert mode**
 
 `d` `$` deletes to the line end
 
+`d` `a` `w` will delete word
+
 `d` `3` `w` will delete 3 words
 
 `d` `d` deletes whole line
 
 `2` `d` `d` will delete two lines
 
+`d` `i` `'` deletes all inside single quotes
+
 `p` commands puts deleted line after current line
 
 `c` useful for correct part of word: `c` `e` deletes word part to the end and goes into INSERT mode
+
+`c` `i` `'` deletes all inside single quotes and inserts into INSERT mode.
 
 ### Replace one symbol
 
@@ -136,6 +185,174 @@ use `o` or `O` to start typing in a new line in **insert mode**
 
 
 
+# [Mастер-класс по VIM](https://www.youtube.com/watch?v=YPbUF-HtXGI&t=37s)
+
+[time 16](https://www.youtube.com/watch?v=YPbUF-HtXGI&t=960s)
+
+`:Vex` open file explorer
+
+[time 22:25](https://www.youtube.com/watch?v=YPbUF-HtXGI&t=1345s)
+
+```sh
+npm init -y
+npm i jest jest-cli
+vim package.json
+```
+
+in vim
+
+```js
+:vert new src/maybe.js
+```
+
+this opens new file window.
+
+```sh
+touch src/maybe.js src/maybe.test.js
+```
+
+go to [this page](https://github.com/fantasyland/fantasy-land) and imagine about monad implementation.
+
+![monada](test/dependencies.png?raw=true)
+
+[time 25:35](https://www.youtube.com/watch?v=YPbUF-HtXGI&t=1535s)
+
+[time 33:30](https://www.youtube.com/watch?v=YPbUF-HtXGI&t=2010s)
+
+# Использование Vim
+
+[часть 1](https://www.youtube.com/watch?v=BeB5iN9ztL0)
+
+move cursor down 17 lines: `17j`
+delete word: `dw` (?)
+search another word like on which cursor is placed: `*`
+open file with filename on which cursor is placed: `gf`
+change uppercase to lowercase: `:%!tr 'A-Z' 'a-z'`, on first 10 lines: `:1,20!tr 'A-Z' 'a-z' `
+
+Open new document: `:e filename`
+Open help: `:help`
+`i` inserts text before cursor, `a` &mdash; after.
+`I` moves cursor to line start, `A` to line end, and enters insert mode.
+`s` deletes symbol under cursor and enters insert node, `S` removes all the line and enters insert mode too.
+`r` is user do replace one symbol.
+`R` replaces symbols one by one
+`^` moves cursor to line begin, `$` &mdash; to line end
+`G` go to file end
+`3G`  go to line 3
+`H`, `M`, `L` &mdash; move to top, middle, low part of viewport.
+[part 2](https://www.youtube.com/watch?v=R9aJYGH5qyo)
+insert tag: m[A-Za-z]
+go to tag: '[A-Za-z]
+`y`, `d`, `c` &mdash;  (yank, delete, change)
+`yy`, `dd`, `cc` &mdash; copy line, cut line, cut line and enter insert mode
+`p` pastes after, `P` before...
+
+`:53,79d` deletes lines from 53 to 79
+
+### Buffers
+
+`"ayw` &mdash; copy word to buffer a
+
+To see buffers, type `:registers`
+
+`C-v` selects rectangular blocks!
+
+### Undo, Redo
+
+`u`, `C-r`
+
+### Search
+
+`/`, `n`, `N`.
+
+### Replace
+
+`:s/asd/ASD/` replaces in this line, `:%s/asd/ASD/` in entire file but first one, `:%s/asd/ASD/g` globally, `:%s/asd/ASD/gi` globally, ignore case, `:53,59s/asd/ASD/g` on lines 53 to 59, `:/tag/,/untag/s/asd/ASD/g` between tag and untag .
+
+[part 3](https://www.youtube.com/watch?v=ySlWW9Q84Cs)
+
+### Exit
+
+`:q`, `:q!`, `:wq` <=> `ZZ`
+
+insert file: `:r filename`
+`:r !calc`
+
+`:qa!` exit all windows with no save
+
+### Split
+
+`C-w v`, `C-w s` `:e filename` `C-w arrows` 
+
+Help: `:help windows`
+
+#### New tab
+
+`:tabnew`, `:tabnew filename`
+
+#### Switch tabs:
+
+`:tabn`, `:tabp`
+
+### Settings
+
+`set` shows allsettings
+
+`set smartcase` searches Uppercase without lowercase, all rest as usual
+
+`set ignorecase` ignores case
+
+`set ro` opens file in readonly mode
+
+`:help options`
+
+### Abbreviations
+
+`:iab cl sonsole.log()`
+
+### FTP
+
+```sh
+vim ftp://..
+```
+
+or in vim:
+
+`:Nread ftp://...`
+
+`:help netrv-urls`
+
+~/.netrc ???
+
+`:help netrv-start`
+
+### Fold
+
+`set folmethod=indent` `zo`, `zc`
+
+`:help folding`
+
+### Key mappings
+
+`~/.vimrc`
+
+```
+nmap <F10> zfa{
+nmap <F11> zO
+```
+
+### Macros
+
+`qa` this starts macros writing
+
+`gUL` macros text, here change to uppercase
+
+`w` continue writing macros
+
+`q` macrs write end.
+
+`@a` run macros a
+
 # VIMTUTOR
 
 
@@ -159,7 +376,7 @@ use `o` or `O` to start typing in a new line in **insert mode**
      To undo all the changes on a line, type:  U  (capital U)
      To undo the undo's, type:                 CTRL-R
 
-### Lesson 4 SUMMARY
+## Lesson 4 SUMMARY
 
 
   1. CTRL-G  displays your location in the file and the file status.
@@ -202,4 +419,4 @@ use `o` or `O` to start typing in a new line in **insert mode**
   5.  :r !dir  reads the output of the dir command and puts it below the
       cursor position.
 
-Ended on line 733 (733g)
+Ended on line 733 (733g)s

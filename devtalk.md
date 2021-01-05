@@ -1,40 +1,3 @@
-# Links
-
-[Vim Awesome](vimawesome.com)
-
-`~/.tmux.conf`
-
-```
-set -g default-terminal "screen-256color"
-set-option -g prefix C-q
-set -g mouse on
-
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
-
-bind -r H resize-pane -L 10
-bind -r J resize-pane -D 10
-bind -r K resize-pane -U 10
-bind -r L resize-pane -R 10
-
-set history-limit 1000
-
-bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
-bind-key -t vi-copy PPage page-up
-bind-key -t vi-copy NPage page-down
-
-bind -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "select-pane -t =; send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
-bind -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "select-pane -t =; send-keys -M" "select-pane -t =; send-keys -M"
-bind-key -t vi-copy WheelUpPane halfpage-up
-bind-key -t vi-copy WheelDownPane halfpage-down
-
-set -sg escape-time 0
-```
-
-
-
 # [Vim 01 - Основы](https://www.youtube.com/watch?v=zNnsNtBF80g)
 
 3 modes: Insert text mode, command mode and visual mode,
@@ -111,7 +74,35 @@ After this, `ctrl` `n` and enter will open explorer :)
 
 [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe). [4:00](https://www.youtube.com/watch?v=pIcLJc85RDc&t=240s) YouCompleteMe is a fast, as-you-type, fuzzy-search code completion, comprehension and refactoring engine for [Vim](https://www.vim.org/). It has several completion engines built in and supports any protocol-compliant Language Server, so can work with practically any language.
 
-[Auto-pairs](https://github.com/jiangmiao/auto-pairs) &mdash; Insert or delete brackets, parens, quotes in pair.
+[pfficial ycm page on github](https://github.com/ycm-core/YouCompleteMe#installation)
+
+Solution in Ubuntu 20/Debian:
+`apt-get install python3-dev cmake`
+
+Install ycm with 'Vim-plug' using Plug 'ycm-core/YouCompleteMe'
+
+1. cd ~/.vim/plugged/YouCompleteMe
+2. brew install cmake 
+3. python3 install.py --all && python3 install.py --ts-completer
+
+###### vim YouCompleteMe: ERROR: Python headers are missing in /usr/include/python2.7.
+
+solution:
+
+```
+$ apt-get install python-dev
+```
+
+- maybe another solution: [ycm-core/YouCompleteMe#2729](https://github.com/ycm-core/YouCompleteMe/issues/2729)
+
+```sh
+sudo apt-get remove cmake 
+sudo apt-get update 
+sudo apt-get upgrade 
+sudo apt-get install cmake3
+```
+
+[Auto-pairs](https://github.com/jiangmiao/auto-pairs) &mdash; Insert or delete brackets, parents, quotes in pair.
 
 [fugitive.vim](https://github.com/tpope/vim-fugitive). Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim? Either way, it's "so awesome, it should be illegal". That's why it's called Fugitive.
 
@@ -144,9 +135,6 @@ set background=dark
 
 let g:mapleader=','
 
-set number
-set expandtab
-set tabstop=2
 set number
 set expandtab
 set tabstop=2
@@ -211,7 +199,7 @@ endfunction
 
 `/` searches whole phrase. **Note** that `.` must be escaped, because regexp...
 
-`*` jumps over all tha same words
+`*` jumps over all the same words
 
 [time 8:00](https://www.youtube.com/watch?v=uBb9Z0hsNuY&t=480s)
 
@@ -227,7 +215,7 @@ means find def in all files inside this directory. To move over results, use **:
 
 #### :grep
 
-this is wrapper over system grep.  So, greo must be installed in system.
+this is wrapper over system grep.  So, grep must be installed in system.
 
 ```
 :grep def *
@@ -258,7 +246,7 @@ search def inside  this directiry
 `line number` `g` `g` 
 
 ```
-12 gg
+12gg
 ```
 
 ---
